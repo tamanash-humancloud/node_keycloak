@@ -6,6 +6,8 @@ const keycloak = require("#middlewares/keycloak");
 const extractToken = require("#middlewares/extractToken");
 
 router.get('/', (req, res) => {
+    console.log(req.kauth)
+    
     res.render('index')
 })
 
