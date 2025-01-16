@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     res.render('index')
 })
 
-router.get('/login', [keycloak.protect('realm:node_main')], (req, res, next) => {
+router.get('/login', [keycloak.protect()], (req, res, next) => {
     try {
         // User Login flow  
     } catch (error) {
