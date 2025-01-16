@@ -40,7 +40,7 @@ const menuItems = [
     }
 ];
 
-// Route open to any role
+// Route open to only Admin Role
 router.get('/menu-items', [keycloak.protect(), extractToken, checkIfAdmin], async (req, res, next) => {
     try {
         let filtered = menuItems.filter(item => {
@@ -56,11 +56,12 @@ router.get('/menu-items', [keycloak.protect(), extractToken, checkIfAdmin], asyn
     }
 })
 
-router.get('/login', (req, res) => {
+// Route open to any role
+router.get('/public-items', keycloak.protect(),async (req, res) => {
     try {
-        
+        res.json(menuItems)
     } catch (error) {
-        return console.log(error)
+        res.send(error)
     }
 })
 

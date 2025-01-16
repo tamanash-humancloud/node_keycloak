@@ -5,6 +5,7 @@ const router =  express.Router();
 const keycloak = require("#middlewares/keycloak");
 const extractToken = require("#middlewares/extractToken");
 
+/* Login testing
 router.get('/', (req, res) => {
     res.render('index')
 })
@@ -16,5 +17,6 @@ router.get('/login', [keycloak.protect('realm:node_main')], (req, res, next) => 
         next(error)
     }
 })
+*/
 
 module.exports = router

@@ -29,7 +29,7 @@ app.use(express.json())
 app.use(cors())
 
 // Register Routes
-app.use('/api', testRoutes)
+// app.use('/api', testRoutes) // Test Route
 app.use('/api', menu)
 app.use('/', view)
 app.use(errorHandler)
