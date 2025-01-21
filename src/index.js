@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const cors = require('cors')
 const express = require('express')
-const port = process.env.PORT
+const port = process.env.DEV_PORT
 
 const keycloak = require('#middlewares/keycloak')
 
@@ -10,6 +10,7 @@ const keycloak = require('#middlewares/keycloak')
 const testRoutes = require('#routes/test')
 const menu = require('#routes/menuItems')
 const view = require('#routes/views')
+const auth = require('#routes/auth')
 
 // Error handler middleware
 const errorHandler = (error, req, res, next) => {
@@ -26,10 +27,12 @@ app.use(keycloak.middleware())
 app.set('view engine', 'ejs');
 
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 app.use(cors())
 
 // Register Routes
 // app.use('/api', testRoutes) // Test Route
+app.use('/api', auth)
 app.use('/api', menu)
 app.use('/', view)
 app.use(errorHandler)
